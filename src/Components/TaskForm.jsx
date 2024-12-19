@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./TaskForm.css"
 import Tag from './Tag'
 const TaskForm = () => {
-  const [task,setTask]=useState('')
+  /* const [task,setTask]=useState('')
 
   const [status,setStatus]=useState('Doing')
 
@@ -13,7 +13,20 @@ const TaskForm = () => {
   const handleStatusChange = e =>{
     setStatus(e.target.value)
   }
-  console.log(task,status)
+  console.log(task,status) */
+
+  const [taskData,setTaskData]=useState({
+    task:"",
+    status:"todo"
+  })
+  const handleChange=(e)=>{
+    const {name,value}=e.target;
+    setTaskData(prev=>{
+      return{...prev,[name]:value};
+    });
+
+   console.log(taskData,setTaskData)
+  }
   
   return (
     
@@ -22,8 +35,8 @@ const TaskForm = () => {
                 <input type="text" 
                 className='task_input'
                  placeholder='Enter Your task'
-                 
-                 onChange={handleTaskChange}
+                 name='task'
+                 onChange={handleChange}
                  
                   />
                
@@ -36,7 +49,7 @@ const TaskForm = () => {
                     <Tag title="REact"/>
                     </div>
                     <div>
-                    <select name="" id="" className="task_status" onChange={handleStatusChange}>
+                    <select name="status" id="" className="task_status" onChange={handleChange}>
                         <option value="todo">Todo</option>
                         <option value="Doing">Doing</option>
                         <option value="Done">Done</option>
